@@ -1,0 +1,5 @@
+streamlit
+tensorflow==2.9.0
+librosa==0.8.1
+soundfile==0.10.3.post1
+numpy==1.21.2
