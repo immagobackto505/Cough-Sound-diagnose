@@ -51,7 +51,7 @@ def main():
         processed_data = preprocess_input(audio_data)
 
         # Load the model
-        model_path = 'MODELS_exported/MODEL_CNN01/model_CNN_1.keras'  # Replace with your model path
+        model_path = 'model_CNN_1.keras'  # Replace with your model path
         model = load_model(model_path)
 
         # Make prediction
