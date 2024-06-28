@@ -3,3 +3,4 @@ tensorflow
 librosa
 soundfile
 numpy
+audio-recorder-streamlit
