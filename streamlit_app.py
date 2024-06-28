@@ -4,27 +4,12 @@ import tensorflow as tf
 import librosa
 import soundfile as sf
 import io
-import os
-import traceback
-
-# Example custom layer or object (if any)
-# from my_custom_objects import MyCustomLayer
 
 # Function to load and return model
-@st.cache_resource
+
+# @st.cache_data(allow_output_mutation=True)
 def load_model(model_path):
-    try:
-        # Use custom_objects if you have any custom layers or objects
-        custom_objects = {
-            # 'MyCustomLayer': MyCustomLayer,
-            # Add any other custom objects here
-        }
-        model = tf.keras.models.load_model(model_path, custom_objects=custom_objects)
-        st.success("Model loaded successfully.")
-    except Exception as e:
-        st.error(f"Error loading model: {str(e)}")
-        st.text(traceback.format_exc())
-        raise e
+    model = tf.keras.models.load_model(model_path)
     return model
 
 # Function to preprocess the input data
@@ -66,20 +51,15 @@ def main():
         # Preprocess the audio data
         processed_data = preprocess_input(audio_data)
 
-        # Print the current working directory for debugging
-        st.write("Current working directory:", os.getcwd())
-        
         # Load the model
-        model_path = 'model_CNN_1.keras'  # Replace with your model path
-        try:
-            model = load_model(model_path)
-            # Make prediction
-            if processed_data is not None:
-                prediction = model.predict(processed_data)
-                st.write('Prediction:')
-                st.write(prediction)  # Display the prediction results
-        except Exception as e:
-            st.error(f"Failed to load or predict using the model: {str(e)}")
+        model_path = 'MODEL_CNN.h5'  # Replace with your model path
+        model = load_model(model_path)
+
+        # Make prediction
+        if processed_data is not None:
+            prediction = model.predict(processed_data)
+            st.write('Prediction:')
+            st.write(prediction)  # Display the prediction results
 
 if __name__ == '__main__':
     main()
